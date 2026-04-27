@@ -1,0 +1,38 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ivory: #fffff0;
+  --dark: #0f0f0f;
+  --tan: #b2ac88;
+  --brown: #8b7355;
+  --brown-dark: #6d5a44;
+  --muted: #5a5a4a;
+  --bg-about: #e8e4d4;
+  --bg-contact: #f5f2e8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  overflow-x: hidden;
+  background: var(--ivory);
+  color: var(--dark);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

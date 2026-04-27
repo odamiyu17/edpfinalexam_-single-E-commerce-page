@@ -1,0 +1,66 @@
+.contacts {
+  background: var(--bg-contact);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.contacts-inner {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+.contacts-img {
+  flex: 0 0 40%;
+  overflow: hidden;
+}
+
+.contacts-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.contacts-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 6rem;
+}
+
+.contacts-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: 3px;
+  margin-bottom: 4rem;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contact-list h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+}
+
+.contact-list p {
+  font-size: 0.93rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+}
