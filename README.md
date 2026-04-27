@@ -28,7 +28,7 @@ Before running the project, make sure you have:
 Open your terminal and run:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git
+git clone https://github.com/odamiyu17/edpfinalexam_-single-E-commerce-page.git
 
 
 Then go inside the project folder:
