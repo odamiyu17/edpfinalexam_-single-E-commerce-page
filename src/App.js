@@ -1,91 +1,119 @@
-import { useState } from "react";
-import "./App.css";
+import { useState, useCallback } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Products from './components/Products';
+import Mission from './components/Mission';
+import Featured from './components/Featured';
+import Contacts from './components/Contacts';
+import CartModal from './components/CartModal';
+import Toast from './components/Toast';
+import OrderSummary from './components/OrderSummary';
+import './App.css';
 
-function App() {
-  // 1. Data: Our list of products
-  const products = [
-    { id: 1, name: "Wireless Headphones", price: 150, image: "https://via.placeholder.com/150?text=Headphones" },
-    { id: 2, name: "Smart Watch", price: 200, image: "https://via.placeholder.com/150?text=Watch" },
-    { id: 3, name: "Mechanical Keyboard", price: 120, image: "https://via.placeholder.com/150?text=Keyboard" },
-    { id: 4, name: "Gaming Mouse", price: 80, image: "https://via.placeholder.com/150?text=Mouse" },
-  ];
-
-  // 2. States: Tracking the cart and the final order
+export default function App() {
   const [cart, setCart] = useState([]);
-  
-  // Function to add/remove products from selection
-  const toggleSelectProduct = (product) => {
-    if (cart.find((item) => item.id === product.id)) {
-      // Remove if already there
-      setCart(cart.filter((item) => item.id !== product.id));
-    } else {
-      // Add if not there
-      setCart([...cart, product]);
-    }
-  };
+  const [cartOpen, setCartOpen] = useState(false);
+  const [toast, setToast] = useState('');
 
-  // Function to handle the checkout (Submit)
-  const handleCheckout = () => {
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const addToCart = useCallback((name, price) => {
+    setCart(prev => {
+      const found = prev.find(item => item.name === name);
+
+      if (found) {
+        return prev.map(item =>
+          item.name === name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      return [...prev, { name, price, quantity: 1 }];
+    });
+
+    setToast(`${name} added to cart!`);
+  }, []);
+
+  const removeFromCart = useCallback((index) => {
+    setCart(prev => prev.filter((_, i) => i !== index));
+  }, []);
+
+  const increaseQty = useCallback((index) => {
+    setCart(prev =>
+      prev.map((item, i) =>
+        i === index
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  }, []);
+
+  const decreaseQty = useCallback((index) => {
+    setCart(prev =>
+      prev
+        .map((item, i) =>
+          i === index
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter(item => item.quantity > 0)
+    );
+  }, []);
+
+  const checkout = useCallback(() => {
     if (cart.length === 0) {
-      alert("Your cart is empty! Please select a product.");
-    } else {
-      const productList = cart.map((item) => item.name).join(", ");
-      const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
-      alert(`Order Confirmed!\n\nItems: ${productList}\nTotal: $${totalPrice}`);
-      setCart([]); // Clear cart after order
+      alert('Your cart is empty!');
+      return;
     }
-  };
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    const lines = cart
+      .map(
+        item =>
+          `• ${item.name} ×${item.quantity} — $${(
+            item.price * item.quantity
+          ).toFixed(2)}`
+      )
+      .join('\n');
+
+    alert(
+      `Thank you for your order!\n\n${lines}\n\nTotal: $${total.toFixed(
+        2
+      )}\n\nYour order will be processed shortly.`
+    );
+
+    setCart([]);
+    setCartOpen(false);
+  }, [cart]);
 
   return (
-    <div className="store-container">
-      <header className="store-header">
-        <h1>TechGlow E-Shop</h1>
-        <p>Select your favorite gadgets and checkout</p>
-      </header>
+    <div className="app">
+      <Navbar totalItems={totalItems} onCartOpen={() => setCartOpen(true)} />
+      <Hero />
+      <About />
+      <Products />
+      <Mission />
+      <Featured onAddToCart={addToCart} />
+      <OrderSummary cart={cart} />
+      <Contacts />
 
-      <div className="main-content">
-        {/* Product Grid */}
-        <div className="product-grid">
-          {products.map((product) => (
-            <div 
-              key={product.id} 
-              className={`product-card ${cart.find(item => item.id === product.id) ? "selected" : ""}`}
-            >
-              <img src={product.image} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p>${product.price}</p>
-              <button onClick={() => toggleSelectProduct(product)}>
-                {cart.find(item => item.id === product.id) ? "Remove" : "Select Product"}
-              </button>
-            </div>
-          ))}
-        </div>
+      <CartModal
+        cart={cart}
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        onRemove={removeFromCart}
+        onCheckout={checkout}
+        onIncrease={increaseQty}
+        onDecrease={decreaseQty}
+      />
 
-        {/* Order Summary Sidebar */}
-        <div className="order-summary">
-          <h2>Your Order List</h2>
-          <hr />
-          {cart.length === 0 ? (
-            <p>No items selected yet.</p>
-          ) : (
-            <ul>
-              {cart.map((item) => (
-                <li key={item.id}>
-                  {item.name} - <strong>${item.price}</strong>
-                </li>
-              ))}
-            </ul>
-          )}
-          <div className="total-section">
-            <h3>Total: ${cart.reduce((acc, item) => acc + item.price, 0)}</h3>
-            <button className="submit-btn" onClick={handleCheckout}>
-              Submit Order
-            </button>
-          </div>
-        </div>
-      </div>
+      {toast && <Toast message={toast} onDone={() => setToast('')} />}
     </div>
   );
 }
-
-export default App;

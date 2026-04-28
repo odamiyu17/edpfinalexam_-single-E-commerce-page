@@ -1,0 +1,73 @@
+.products {
+  background: linear-gradient(160deg, var(--ivory), var(--bg-about));
+  padding: 7rem 4rem;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.products-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: 3px;
+  margin-bottom: 0.8rem;
+}
+
+.products-header p {
+  font-size: 0.93rem;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.product-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+.product-card span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.88);
+  color: #2c2c2c;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+
+.product-card:hover span {
+  background: rgba(255, 255, 255, 0.96);
+}

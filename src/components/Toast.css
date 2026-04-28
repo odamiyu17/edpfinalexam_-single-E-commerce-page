@@ -1,0 +1,26 @@
+.toast {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  background: var(--brown);
+  color: white;
+  padding: 0.9rem 1.6rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.86rem;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  z-index: 900;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  animation: toastIn 0.3s ease forwards;
+}
+
+@keyframes toastIn {
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
