@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.80feef75.css",
+    "main.js": "/static/js/main.ed0604eb.js",
+    "static/media/sunscreen.jpg": "/static/media/sunscreen.dfa37b536680ac3f152e.jpg",
+    "static/media/cleanser.jpg": "/static/media/cleanser.a74bc80b1d73490068a9.jpg",
+    "static/media/night.jpg": "/static/media/night.6c29b03761f56bd0a0ca.jpg",
+    "static/media/cream.jpg": "/static/media/cream.03e25fd2f876cec45a5d.jpg",
+    "static/media/serum.jpg": "/static/media/serum.589ef80692f03e456fb3.jpg",
+    "static/media/eye.jpg": "/static/media/eye.2f6a178caa0c78e3f70f.jpg",
+    "static/media/img10.png": "/static/media/img10.cf8c2cb15fcb5f2ab764.png",
+    "static/media/img9.png": "/static/media/img9.a83591b3ac966eb69190.png",
+    "static/media/img7.png": "/static/media/img7.80dec98699d00a9b636e.png",
+    "static/media/img14.png": "/static/media/img14.91ff388edbc1d24ca95a.png",
+    "static/media/home.png": "/static/media/home.0a682f940cd4e98a09e3.png",
+    "static/media/img6.png": "/static/media/img6.539343acc5fd7fc799c7.png",
+    "static/media/img11.png": "/static/media/img11.ca9933c9679bd13ee404.png",
+    "static/media/img5.png": "/static/media/img5.c92756fab3f2e08e3b17.png",
+    "static/media/img8.png": "/static/media/img8.0ce650acd1c243dd8e0c.png",
+    "index.html": "/index.html",
+    "main.80feef75.css.map": "/static/css/main.80feef75.css.map",
+    "main.ed0604eb.js.map": "/static/js/main.ed0604eb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.80feef75.css",
+    "static/js/main.ed0604eb.js"
+  ]
+}

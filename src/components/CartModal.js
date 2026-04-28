@@ -1,11 +1,20 @@
 import './CartModal.css';
 
-export default function CartModal({ cart, isOpen, onClose, onRemove, onCheckout }) {
+export default function CartModal({
+  cart,
+  isOpen,
+  onClose,
+  onRemove,
+  onCheckout,
+  onIncrease,
+  onDecrease
+}) {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <>
       <div className={`cart-overlay${isOpen ? ' open' : ''}`} onClick={onClose} />
+
       <aside className={`cart-drawer${isOpen ? ' open' : ''}`}>
         <div className="cart-header">
           <h2>Your Cart</h2>
@@ -20,9 +29,21 @@ export default function CartModal({ cart, isOpen, onClose, onRemove, onCheckout 
               <div className="cart-row" key={i}>
                 <div>
                   <p className="cart-name">{item.name}</p>
-                  <p className="cart-sub">${item.price.toFixed(2)} &times; {item.quantity}</p>
+
+                  <div className="cart-sub">
+                    <span>${item.price.toFixed(2)}</span>
+
+                    <div className="cart-quantity">
+                      <button onClick={() => onDecrease(i)}>-</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => onIncrease(i)}>+</button>
+                    </div>
+                  </div>
                 </div>
-                <button className="cart-remove" onClick={() => onRemove(i)}>&times;</button>
+
+                <button className="cart-remove" onClick={() => onRemove(i)}>
+                  &times;
+                </button>
               </div>
             ))
           )}
@@ -33,7 +54,10 @@ export default function CartModal({ cart, isOpen, onClose, onRemove, onCheckout 
             <span>Total</span>
             <span>${total.toFixed(2)}</span>
           </div>
-          <button className="cart-checkout" onClick={onCheckout}>Checkout</button>
+
+          <button className="cart-checkout" onClick={onCheckout}>
+            Checkout
+          </button>
         </div>
       </aside>
     </>

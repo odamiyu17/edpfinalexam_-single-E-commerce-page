@@ -144,3 +144,40 @@
 .cart-checkout:hover {
   background: var(--brown-dark);
 }
+
+.cart-sub button {
+  padding: 3px 8px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cart-sub button:hover {
+  background: #bbb;
+}
+
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.cart-quantity button {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cart-quantity button:hover {
+  background: #bbb;
+}
+
+.cart-quantity span {
+  font-size: 0.9rem;
+  color: #2c2c2c;
+}

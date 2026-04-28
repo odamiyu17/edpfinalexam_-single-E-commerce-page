@@ -36,15 +36,11 @@
 }
 
 .feat-img {
-  background: linear-gradient(135deg, var(--tan), var(--brown));
-  color: white;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-align: center;
-  padding: 3rem 1rem;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
   margin-bottom: 1.2rem;
+  border-radius: 6px;
 }
 
 .feat-card h4 {
@@ -132,4 +128,43 @@
   max-width: 640px;
   margin: 3.5rem auto 0;
   line-height: 1.8;
+}
+
+.added {
+  animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.feat-card button:active {
+  transform: scale(0.95);
+}
+
+.flying-img {
+  position: fixed;
+  object-fit: cover;
+  z-index: 9999;
+  border-radius: 8px;
+  pointer-events: none;
+  transition: all 0.8s ease-in-out;
+}
+
+.flying-img.fly-to-cart {
+  left: calc(100vw - 90px) !important;
+  top: 25px !important;
+  width: 35px !important;
+  height: 35px !important;
+  opacity: 0;
+  transform: scale(0.2) rotate(20deg);
 }
